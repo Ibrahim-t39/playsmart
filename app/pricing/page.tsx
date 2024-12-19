@@ -10,23 +10,23 @@ const plans = [
       "Community forum access",
     ],
     cta: "Get Started",
+    href: "/signup",
   },
   {
     name: "Pro",
-    price: "$19.99/month",
+    price: "$10/month",
     features: [
       "Full access to all courses",
       "Priority mentorship matching",
-      "Exclusive workshops and webinars",
       "Advanced career center tools",
-      "Personal learning dashboard",
     ],
     cta: "Upgrade to Pro",
     highlighted: true,
+    href: "/subscribe",
   },
   {
     name: "School",
-    price: "Custom",
+    price: "$5,000–$20,000/year",
     features: [
       "Bulk student accounts",
       "Custom workshops and courses",
@@ -35,6 +35,7 @@ const plans = [
       "Integration with school systems",
     ],
     cta: "Contact Sales",
+    href: "/contact-sales",
   },
 ];
 
@@ -92,15 +93,16 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  className={`w-full py-3 rounded-lg font-medium text-lg transition-colors duration-300 ${
+                <a
+                  href={plan.href}
+                  className={`w-full py-3 rounded-lg font-medium text-lg block text-center transition-colors duration-300 ${
                     plan.highlighted
                       ? "bg-white text-green-500 hover:bg-gray-200"
                       : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                   }`}
                 >
                   {plan.cta}
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -115,9 +117,12 @@ export default function PricingPage() {
             We offer tailored plans for schools and organizations. Get in touch
             with our team to discuss your specific needs.
           </p>
-          <button className="bg-gradient-to-r from-green-400 to-blue-400 text-black px-8 py-3 rounded-lg text-lg font-bold hover:opacity-90 transition-transform transform hover:scale-105">
+          <a
+            href="/contact-sales"
+            className="bg-gradient-to-r from-green-400 to-blue-400 text-black px-8 py-3 rounded-lg text-lg font-bold hover:opacity-90 transition-transform transform hover:scale-105"
+          >
             Contact Our Sales Team
-          </button>
+          </a>
         </div>
       </div>
     </div>

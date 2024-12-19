@@ -1,172 +1,161 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function Home() {
+  // Define the type of hoveredFeature to allow number or null
+  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+
+  const features = [
+    {
+      title: "Interactive Courses",
+      description:
+        "Gamified modules teaching STEM through sports applications: biomechanics, physics of trajectories, and more. Earn credits and certifications!",
+      icon: "/icons/courses.svg",
+      image: "/images/courses.jpg",
+    },
+    {
+      title: "Virtual Workshops",
+      description:
+        "Live sessions with STEM professionals in sports. Gain real-world insights and mentorship.",
+      icon: "/icons/workshops.svg",
+      image: "/images/workshops.jpg",
+    },
+    {
+      title: "Career Center",
+      description:
+        "Apply for internships, scholarships, and scouting opportunities with top sports brands and universities.",
+      icon: "/icons/career-center.svg",
+      image: "/images/career.jpg",
+    },
+    {
+      title: "Mentorship Hub",
+      description:
+        "One-on-One mentorship with STEM professionals and monthly Q&A sessions to guide your career.",
+      icon: "/icons/mentorship.svg",
+      image: "/images/mentorship.jpg",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+    <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-black to-gray-900 text-white">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-background.jpg"
+            alt="Hero Background"
+            layout="fill"
+            objectFit="cover"
+            className="opacity-70"
+          />
+        </div>
+        <motion.div
+          className="relative z-10 text-center max-w-5xl bg-gradient-to-br from-black/70 via-black/50 to-transparent p-12 rounded-lg shadow-2xl"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="relative z-10 text-center backdrop-blur-sm bg-black/30 p-8 rounded-lg">
-          <h1 className="text-6xl font-extrabold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-400 mb-6">
-            Where Sports Meet Innovation
+          <h1 className="text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            STEMletics: Innovate, Excel, Dominate
           </h1>
-          <p className="text-lg text-gray-300 mb-8">
-            Discover how STEM and sports collide to create the future of education.
+          <p className="mt-6 text-xl md:text-3xl text-gray-300">
+            Where Sports Passion Meets STEM Innovation.
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="mt-10 flex justify-center gap-6">
             <Link
               href="/courses"
-              className="bg-green-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-green-500 transition-transform transform hover:scale-105"
+              className="bg-blue-500 px-10 py-5 rounded-full text-black font-bold shadow-lg hover:bg-blue-600 hover:scale-105 transform transition-transform"
             >
-              Explore Courses
+              Get Started
             </Link>
             <Link
               href="/about"
-              className="bg-blue-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-blue-500 transition-transform transform hover:scale-105"
+              className="bg-purple-500 px-10 py-5 rounded-full text-black font-bold shadow-lg hover:bg-purple-600 hover:scale-105 transform transition-transform"
             >
               Learn More
             </Link>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Featured Courses Section */}
-      <section className="py-16 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <h2 className="text-4xl font-extrabold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400 text-center mb-12">
-            Featured Courses
-          </h2>
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "Physics in Sports",
-                image: "/course-physics.jpg",
-                description:
-                  "Explore the principles of physics through sports scenarios and real-world applications.",
-              },
-              {
-                title: "Sports Medicine Fundamentals",
-                image: "/course-medicine.jpg",
-                description:
-                  "Learn about injury analysis, prevention, and recovery techniques in sports.",
-              },
-              {
-                title: "Data Science in Athletics",
-                image: "/course-data-science.jpg",
-                description:
-                  "Dive into performance metrics and predictive analysis to enhance athletic outcomes.",
-              },
-            ].map((course, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-              >
-                <Image
-                  src={course.image}
-                  alt={course.title}
-                  width={400}
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-green-400 mb-2">
-                    {course.title}
-                  </h3>
-                  <p className="text-gray-300 mb-4">{course.description}</p>
-                  <Link
-                    href="/courses"
-                    className="text-blue-400 hover:underline font-bold"
-                  >
-                    Learn More →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-          <h2 className="text-4xl font-extrabold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-blue-400 mb-8">
-            What Our Students Say
-          </h2>
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "High School Student",
-                quote:
-                  "STEMletics has transformed my view of science. I never thought physics could be so exciting!",
-              },
-              {
-                name: "Michael Chen",
-                role: "College Athlete",
-                quote:
-                  "The sports medicine course gave me invaluable insights into injury prevention and recovery.",
-              },
-              {
-                name: "Emily Rodriguez",
-                role: "Aspiring Data Scientist",
-                quote:
-                  "Learning data science through sports analytics has been incredibly engaging and practical.",
-              },
-            ].map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
-              >
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                <p className="text-gray-300 italic mb-4">"{testimonial.quote}"</p>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-12 bg-green-400 rounded-full flex items-center justify-center text-black font-bold">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-white">{testimonial.name}</p>
-                    <p className="text-sm text-gray-400">{testimonial.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
-      <section className="py-16 bg-gradient-to-r from-green-400 to-blue-400 text-white text-center">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <h2 className="text-4xl font-extrabold mb-4">
-            Ready to Start Your STEM Journey?
-          </h2>
-          <p className="text-lg mb-8">
-            Join STEMletics today and unlock your potential where sports and science intersect!
-          </p>
-          <Link
-            href="/signup"
-            className="bg-white text-blue-500 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 hover:text-blue-700 transition-transform transform hover:scale-105"
+      {/* Features Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-8">
+          <motion.h2
+            className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-green-400 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            Sign Up Now
-          </Link>
+            Explore Our Features
+          </motion.h2>
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                className={`relative p-10 rounded-xl shadow-lg transform transition-all ${
+                  hoveredFeature === index ? "bg-teal-600 scale-105" : "bg-gray-800"
+                }`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                onMouseEnter={() => setHoveredFeature(index)}
+                onMouseLeave={() => setHoveredFeature(null)}
+              >
+                <div className="absolute inset-0 overflow-hidden rounded-xl">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    layout="fill"
+                    objectFit="cover"
+                    className="opacity-50"
+                  />
+                </div>
+                <div className="relative z-10 text-center">
+                  <div className="flex justify-center mb-6">
+                    <Image src={feature.icon} alt={feature.title} width={80} height={80} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-teal-300 mb-3">{feature.title}</h3>
+                  <p className="text-gray-300">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="text-center text-gray-400 text-sm py-8">
-        &copy; {new Date().getFullYear()} STEMletics. All rights reserved.
-      </footer>
+      {/* Call to Action */}
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-700 text-center text-white">
+        <motion.div
+          className="container mx-auto px-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <h2 className="text-5xl font-bold">Step Into the Future</h2>
+          <p className="mt-6 text-lg">
+            Unlock your potential with STEMletics. Your journey begins here.
+          </p>
+          <div className="mt-10 flex justify-center gap-8">
+            <Link
+              href="/signup"
+              className="bg-white text-indigo-700 px-10 py-5 rounded-full font-bold shadow-lg hover:bg-gray-200 hover:scale-105 transition-transform"
+            >
+              Join Now
+            </Link>
+            <Link
+              href="/learn-more"
+              className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold hover:bg-white hover:text-indigo-700 hover:scale-105 transition-transform"
+            >
+              Discover More
+            </Link>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }

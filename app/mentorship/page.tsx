@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Star, Calendar, Info} from "lucide-react";
+import { Star, Calendar, Info, XCircle, Lock } from "lucide-react";
 import { useState } from "react";
 
 type Mentor = {
@@ -66,7 +66,10 @@ const mentors: Mentor[] = [
 
 export default function MentorshipPage() {
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
-  const [isScheduling, setIsScheduling] = useState(false);
+
+  const closeModal = () => {
+    setSelectedMentor(null);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white pt-24">
@@ -77,7 +80,7 @@ export default function MentorshipPage() {
             Mentorship Program
           </h1>
           <p className="text-lg text-gray-300 mt-4">
-            Connect with industry experts to gain personalized guidance and accelerate your STEM-Sports career. Learn from leaders in various domains and explore opportunities in sports innovation.
+            Connect with industry experts to gain personalized guidance and accelerate your STEM-Sports career. Unlock premium access for exclusive sessions.
           </p>
         </section>
 
@@ -102,6 +105,10 @@ export default function MentorshipPage() {
                   <Star className="w-5 h-5 text-yellow-400 mr-2" />
                   <span className="text-gray-300">{mentor.rating}/5.0</span>
                 </div>
+                <div className="flex items-center mb-4">
+                  <Lock className="w-5 h-5 text-red-400 mr-2" />
+                  <span className="text-red-400 text-sm">Premium</span>
+                </div>
                 <div className="flex flex-col gap-3">
                   <button
                     className="bg-green-400 text-black px-4 py-2 rounded-lg font-bold hover:bg-green-500 transition-transform transform hover:scale-105 flex items-center justify-center"
@@ -112,13 +119,10 @@ export default function MentorshipPage() {
                   </button>
                   <button
                     className="bg-blue-400 text-black px-4 py-2 rounded-lg font-bold hover:bg-blue-500 transition-transform transform hover:scale-105 flex items-center justify-center"
-                    onClick={() => {
-                      setSelectedMentor(mentor);
-                      setIsScheduling(true);
-                    }}
+                    onClick={() => (window.location.href = "/pricing")}
                   >
                     <Calendar className="w-5 h-5 mr-2" />
-                    Schedule Session
+                    Unlock Premium
                   </button>
                 </div>
               </div>
@@ -133,14 +137,14 @@ export default function MentorshipPage() {
       </div>
 
       {/* Mentor Details Modal */}
-      {selectedMentor && !isScheduling && (
+      {selectedMentor && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-gray-800 rounded-lg p-8 w-full max-w-lg text-white relative">
             <button
               className="absolute top-4 right-4 text-gray-300 hover:text-white"
-              onClick={() => setSelectedMentor(null)}
+              onClick={closeModal}
             >
-              ✕
+              <XCircle className="w-6 h-6" />
             </button>
             <Image
               src={selectedMentor.image}
@@ -150,63 +154,25 @@ export default function MentorshipPage() {
               className="rounded-full mx-auto mb-6"
             />
             <h2 className="text-3xl font-bold text-green-400 mb-4">{selectedMentor.name}</h2>
-            <p className="text-sm font-semibold text-gray-300 mb-4">{selectedMentor.expertise}</p>
+            <p className="text-lg text-gray-300 mb-6">{selectedMentor.bio}</p>
 
-            {/* Vertical Details */}
-            <div className="space-y-4 mb-6">
+            <h3 className="text-2xl font-bold text-blue-400 mb-4">Key Details</h3>
+            <ul className="space-y-3">
               {selectedMentor.details.map((detail, index) => (
-                <div
+                <li
                   key={index}
-                  className="bg-gray-700 text-white px-4 py-3 rounded-lg shadow-md"
+                  className="bg-gray-700 text-white px-4 py-2 rounded-lg shadow-md"
                 >
                   {detail}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <button
-              className="bg-green-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-green-500 transition-transform transform hover:scale-105 w-full"
-              onClick={() => setSelectedMentor(null)}
+              className="mt-6 bg-green-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-green-500 transition-transform transform hover:scale-105 w-full"
+              onClick={closeModal}
             >
               Close
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Scheduling Modal */}
-      {selectedMentor && isScheduling && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-gray-800 rounded-lg p-8 w-full max-w-lg text-white relative">
-            <button
-              className="absolute top-4 right-4 text-gray-300 hover:text-white"
-              onClick={() => {
-                setSelectedMentor(null);
-                setIsScheduling(false);
-              }}
-            >
-              ✕
-            </button>
-            <h2 className="text-3xl font-bold text-green-400 mb-4">
-              Schedule a Session with {selectedMentor.name}
-            </h2>
-            <p className="text-gray-300 mb-6">
-              Choose a convenient time to connect with {selectedMentor.name} and accelerate your
-              career in STEM-Sports.
-            </p>
-            <input
-              type="datetime-local"
-              className="bg-gray-700 text-white px-4 py-3 rounded-lg w-full mb-6"
-            />
-            <button
-              className="bg-blue-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-blue-500 transition-transform transform hover:scale-105 w-full"
-              onClick={() => {
-                alert(`Session successfully scheduled with ${selectedMentor.name}!`);
-                setSelectedMentor(null);
-                setIsScheduling(false);
-              }}
-            >
-              Confirm Session
             </button>
           </div>
         </div>

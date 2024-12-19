@@ -33,7 +33,7 @@ export default function RootLayout({
         `}
       >
         <Navbar />
-        <main className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
+        <main className="flex-grow flex flex-col w-full min-h-screen">
           {children}
         </main>
         <Footer />

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 
@@ -9,12 +11,11 @@ const teamMembers = [
 ];
 
 const milestones = [
-  { year: 2018, event: "STEMletics founded" },
-  { year: 2019, event: "Launched first online course" },
-  { year: 2020, event: "Partnered with major sports organizations" },
-  { year: 2021, event: "Introduced mentorship program" },
-  { year: 2022, event: "Reached 100,000 students" },
-  { year: 2023, event: "Expanded to international markets" },
+  { year: 2023, event: "STEMletics concept developed" },
+  { year: 2024, event: "Initial team assembled and pilot programs planned" },
+  { year: 2025, event: "Expected platform launch and first online courses" },
+  { year: 2026, event: "Goal: Partner with key sports organizations" },
+  { year: 2027, event: "Goal: Reach 50,000 students enrolled" },
 ];
 
 export default function AboutPage() {
@@ -26,7 +27,7 @@ export default function AboutPage() {
           About STEMletics
         </h1>
         <p className="mt-4 text-lg text-gray-300">
-          Empowering the next generation of athletes, scientists, and engineers through sports and STEM.
+          Bridging sports and STEM to empower the leaders of tomorrow.
         </p>
       </div>
 
@@ -39,17 +40,16 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <p className="text-lg text-gray-300 mb-6">
-                At STEMletics, we bridge the gap between physical activity and academic excellence through innovative
-                learning experiences. Our mission is to inspire and empower the next generation of leaders in STEM and
-                sports.
+                STEMletics aims to inspire a new generation of leaders by connecting physical activity with academic
+                innovation. Through a STEM-Sports integrated approach, we strive to make learning engaging and impactful.
               </p>
-              <h3 className="text-2xl font-semibold mb-4 text-blue-400">What We Do</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-blue-400">Our Focus</h3>
               <ul className="space-y-4">
                 {[
-                  "Provide cutting-edge STEM-Sports integrated courses",
-                  "Offer mentorship from industry experts",
-                  "Facilitate career opportunities in sports technology",
-                  "Foster a community of like-minded learners and professionals",
+                  "Launching accessible STEM-Sports online courses",
+                  "Building a strong mentorship network with industry experts",
+                  "Developing partnerships with sports organizations",
+                  "Providing career pathways in sports technology",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <CheckCircle className="w-6 h-6 text-green-400 mr-3" />
@@ -59,12 +59,12 @@ export default function AboutPage() {
               </ul>
             </div>
             <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-              <h3 className="text-2xl font-semibold mb-4 text-green-400">Our Impact</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-green-400">Our 2025 Vision</h3>
               <ul className="text-lg text-gray-300 space-y-3">
-                <li>Over 100,000 students enrolled</li>
-                <li>Partnerships with 50+ sports organizations</li>
-                <li>90% of graduates employed in STEM-Sports fields</li>
-                <li>20+ innovative research projects completed</li>
+                <li>Launch our first integrated STEM-Sports courses</li>
+                <li>Secure partnerships with 5+ organizations</li>
+                <li>Begin mentorship opportunities with industry leaders</li>
+                <li>Establish a foundational community of learners</li>
               </ul>
             </div>
           </div>
@@ -75,11 +75,14 @@ export default function AboutPage() {
       <section className="py-16 bg-gray-800">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl font-bold mb-8 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
-            Our Team
+            Meet the Team
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {teamMembers.map((member, index) => (
-              <div key={index} className="text-center">
+              <div
+                key={index}
+                className="text-center bg-gray-900 rounded-lg p-6 hover:shadow-lg hover:scale-105 transform transition duration-300"
+              >
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -101,12 +104,26 @@ export default function AboutPage() {
           <h2 className="text-4xl font-bold mb-8 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-400">
             Our Journey
           </h2>
-          <div className="space-y-6">
+          <div className="relative">
             {milestones.map((milestone, index) => (
-              <div key={index} className="flex items-center">
-                <div className="w-24 font-bold text-xl text-blue-400">{milestone.year}</div>
-                <div className="flex-grow bg-gray-800 rounded-lg shadow-lg p-4 text-gray-300">
-                  {milestone.event}
+              <div
+                key={index}
+                className={`flex items-center mb-6 ${
+                  index % 2 === 0 ? "flex-row-reverse" : ""
+                }`}
+              >
+                <div className="w-1/2">
+                  <div className="bg-gray-800 rounded-lg shadow-lg p-6 text-gray-300">
+                    <h3 className="text-lg font-bold mb-2">{milestone.event}</h3>
+                    <p className="text-gray-400">Year: {milestone.year}</p>
+                  </div>
+                </div>
+                <div className="w-1/2 flex justify-center">
+                  <div
+                    className={`h-4 w-4 rounded-full bg-green-400 ${
+                      index % 2 === 0 ? "ml-6" : "mr-6"
+                    }`}
+                  />
                 </div>
               </div>
             ))}

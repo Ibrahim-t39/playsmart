@@ -7,18 +7,24 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { useAuth } from './AuthProvider';
 
 export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { login } = useAuth();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get('signin-email') as string;
+    const password = formData.get('signin-password') as string;
+
+    await login(email, password);
     setIsLoading(false);
-    router.push('/'); // Redirect to home page after successful auth
+    router.push('/'); // Redirect to home page after successful sign-in
   };
 
   return (
@@ -26,8 +32,12 @@ export default function AuthPage() {
       <div className="max-w-md w-full">
         <Tabs defaultValue="signin" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="signin" className="bg-gray-800 text-gray-300 hover:bg-green-400 hover:text-black rounded-lg transition-all">Sign In</TabsTrigger>
-            <TabsTrigger value="signup" className="bg-gray-800 text-gray-300 hover:bg-blue-400 hover:text-black rounded-lg transition-all">Sign Up</TabsTrigger>
+            <TabsTrigger value="signin" className="bg-gray-800 text-gray-300 hover:bg-green-400 hover:text-black rounded-lg transition-all">
+              Sign In
+            </TabsTrigger>
+            <TabsTrigger value="signup" className="bg-gray-800 text-gray-300 hover:bg-blue-400 hover:text-black rounded-lg transition-all">
+              Sign Up
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="signin">
             <Card className="bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg rounded-lg">
@@ -35,7 +45,7 @@ export default function AuthPage() {
                 <CardTitle className="text-green-400 text-2xl">Sign In</CardTitle>
                 <CardDescription className="text-gray-300">Enter your credentials to access your account.</CardDescription>
               </CardHeader>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSignIn}>
                 <CardContent className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="signin-email" className="text-gray-300">Email</Label>
@@ -47,7 +57,11 @@ export default function AuthPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button type="submit" className="w-full bg-green-400 text-black hover:bg-green-500 transition-transform transform hover:scale-105" disabled={isLoading}>
+                  <Button
+                    type="submit"
+                    className="w-full bg-green-400 text-black hover:bg-green-500 transition-transform transform hover:scale-105"
+                    disabled={isLoading}
+                  >
                     {isLoading ? 'Signing In...' : 'Sign In'}
                   </Button>
                 </CardFooter>
@@ -60,7 +74,7 @@ export default function AuthPage() {
                 <CardTitle className="text-blue-400 text-2xl">Sign Up</CardTitle>
                 <CardDescription className="text-gray-300">Create a new account to join STEMletics.</CardDescription>
               </CardHeader>
-              <form onSubmit={handleSubmit}>
+              <form>
                 <CardContent className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="signup-name" className="text-gray-300">Full Name</Label>
@@ -80,7 +94,11 @@ export default function AuthPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button type="submit" className="w-full bg-blue-400 text-black hover:bg-blue-500 transition-transform transform hover:scale-105" disabled={isLoading}>
+                  <Button
+                    type="submit"
+                    className="w-full bg-blue-400 text-black hover:bg-blue-500 transition-transform transform hover:scale-105"
+                    disabled={isLoading}
+                  >
                     {isLoading ? 'Signing Up...' : 'Sign Up'}
                   </Button>
                 </CardFooter>
