@@ -76,7 +76,7 @@ export default function WorkshopDetails() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white pt-24">
       {/* Header Section */}
       <div className="bg-gradient-to-br from-gray-800 to-black py-16">
         <div className="max-w-4xl mx-auto px-6">

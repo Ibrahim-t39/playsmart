@@ -17,7 +17,7 @@ const workshops: Workshop[] = [
     title: "Intro to Physics in Sports",
     date: "2024-12-15",
     time: "10:00 AM - 12:00 PM",
-    location: "Virtual",
+    location: "Virtual Session",
     description: "An engaging introduction to physics principles applied in sports.",
     type: "Regularly Scheduled",
   },
@@ -26,7 +26,7 @@ const workshops: Workshop[] = [
     title: "Biomechanics and Movement Efficiency",
     date: "2024-12-19",
     time: "2:00 PM - 4:00 PM",
-    location: "STEMletics HQ",
+    location: "Virtual Session",
     description: "Dive into biomechanics fundamentals for athletes.",
     type: "Ongoing",
   },
@@ -35,7 +35,7 @@ const workshops: Workshop[] = [
     title: "Sports Data Analytics Workshop",
     date: "2024-12-25",
     time: "11:00 AM - 1:00 PM",
-    location: "Online Webinar",
+    location: "Virtual Session",
     description: "Learn how to analyze sports data to improve performance.",
     type: "Happening This Week",
   },
@@ -44,7 +44,7 @@ const workshops: Workshop[] = [
     title: "Nutrition for Peak Performance",
     date: "2024-11-30",
     time: "9:00 AM - 11:00 AM",
-    location: "Local Library",
+    location: "Virtual Session",
     description: "Explore the impact of nutrition on athletic performance.",
     type: "Completed",
   },
@@ -53,7 +53,7 @@ const workshops: Workshop[] = [
     title: "Engineering Sports Equipment for Safety",
     date: "2025-01-10",
     time: "3:00 PM - 5:00 PM",
-    location: "University Auditorium",
+    location: "Virtual Session",
     description: "Discover the engineering behind modern sports gear.",
     type: "Upcoming",
   },
@@ -62,20 +62,14 @@ const workshops: Workshop[] = [
 function categorizeWorkshops(workshops: Workshop[]) {
   const now = new Date();
   return {
-    "Previous Workshops": workshops.filter((workshop) => new Date(workshop.date) < now),
-    "Today's Workshops": workshops.filter((workshop) => {
-      const workshopDate = new Date(workshop.date);
-      return workshopDate.toDateString() === now.toDateString();
-    }),
-    "Upcoming (This Week)": workshops.filter(
-      (workshop) =>
-        new Date(workshop.date) > now &&
-        new Date(workshop.date) <= new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+    "Upcoming Workshops": workshops.filter(
+      (workshop) => new Date(workshop.date) > now &&
+      new Date(workshop.date) <= new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
     ),
     "Future Workshops": workshops.filter(
       (workshop) => new Date(workshop.date) > new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
     ),
-    "Recurring Workshops": workshops.filter((workshop) => workshop.type === "Recurring"),
+    "Previous Workshops": workshops.filter((workshop) => new Date(workshop.date) < now),
   };
 }
 
@@ -83,60 +77,79 @@ export default function WorkshopsPage() {
   const categorizedWorkshops = categorizeWorkshops(workshops);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <div className="bg-gradient-to-br from-gray-800 to-black py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-6xl font-extrabold text-green-400 mb-4">Workshops</h1>
-          <p className="text-xl text-gray-300">
-            Discover our expertly crafted workshops, tailored to your learning pace, categorized by past, current, and upcoming events.
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+      {/* Header Section */}
+      <div className="pt-24 pb-16">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <h1 className="text-5xl font-extrabold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
+              PlaySmart Workshops
+            </span>
+          </h1>
+          <p className="text-xl text-gray-300 max-w-3xl">
+            Join our interactive virtual workshops designed to blend sports and STEM education. 
+            Learn from experts and connect with peers from anywhere in the world.
           </p>
         </div>
       </div>
 
-      <div className="py-16 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Workshops Grid */}
+      <div className="pb-32">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           {Object.entries(categorizedWorkshops).map(([category, workshops]) => (
-            <div key={category} className="mb-16">
-              <h2 className="text-4xl font-bold text-green-400 mb-8 border-b-2 border-green-500 pb-2">
+            <div key={category} className="mb-20 last:mb-0">
+              <h2 className="text-3xl font-bold text-blue-400 mb-8">
                 {category}
               </h2>
               {workshops.length > 0 ? (
-                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {(workshops as Workshop[]).map((workshop) => (
-                    <li
+                    <div
                       key={workshop.id}
-                      className="flex flex-col bg-gray-900 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
+                      className="bg-gray-800/50 backdrop-blur rounded-xl overflow-hidden hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300"
                     >
-                      <div className="p-6 flex-1">
-                        <h3 className="text-2xl font-bold text-green-400 mb-2">
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-blue-400 mb-3">
                           {workshop.title}
                         </h3>
-                        <p className="text-sm text-gray-300 mb-4">
+                        <p className="text-gray-300 text-sm mb-4">
                           {workshop.description}
                         </p>
-                        <p className="text-sm text-gray-400 mb-1">
-                          <strong>Date:</strong> {workshop.date}
-                        </p>
-                        <p className="text-sm text-gray-400 mb-1">
-                          <strong>Time:</strong> {workshop.time}
-                        </p>
-                        <p className="text-sm text-gray-400 mb-4">
-                          <strong>Location:</strong> {workshop.location}
-                        </p>
+                        <div className="space-y-2 text-sm text-gray-400">
+                          <p className="flex items-center gap-2">
+                            <span className="font-semibold">Date:</span> 
+                            {new Date(workshop.date).toLocaleDateString('en-US', {
+                              weekday: 'long',
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </p>
+                          <p className="flex items-center gap-2">
+                            <span className="font-semibold">Time:</span> 
+                            {workshop.time}
+                          </p>
+                          <p className="flex items-center gap-2">
+                            <span className="font-semibold">Format:</span> 
+                            {workshop.location}
+                          </p>
+                        </div>
                       </div>
-                      <div className="bg-gray-800 p-4 text-center">
+                      <div className="px-6 pb-6 pt-2">
                         <Link
                           href={`/workshops/${workshop.id}`}
-                          className="bg-green-400 text-black px-6 py-2 rounded-full font-bold hover:bg-green-500 transition-transform transform hover:scale-105"
+                          className="block w-full py-2 text-center rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold transition-all duration-300"
                         >
-                          Learn More
+                          Register Now
                         </Link>
                       </div>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               ) : (
-                <p className="text-gray-400">No workshops in this category.</p>
+                <p className="text-gray-400 italic">
+                  No workshops scheduled in this category at the moment.
+                </p>
               )}
             </div>
           ))}

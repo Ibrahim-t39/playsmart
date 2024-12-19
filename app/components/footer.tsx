@@ -8,7 +8,7 @@ export function Footer() {
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <h2 className="text-3xl font-extrabold mb-4 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
-              STEMletics
+              PlaySmart
             </h2>
             <p className="text-gray-400 mb-6">
               Bridging sports and STEM for an innovative educational experience. We empower the next generation of
@@ -60,7 +60,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="text-gray-400">123 STEM Street</li>
               <li className="text-gray-400">Innovate City, ST 12345</li>
-              <li className="text-gray-400">contact@stemletics.com</li>
+              <li className="text-gray-400">contact@playsmart.com</li>
               <li className="text-gray-400">(123) 456-7890</li>
             </ul>
           </div>
@@ -68,7 +68,7 @@ export function Footer() {
 
         {/* Footer Bottom */}
         <div className="mt-8 border-t border-gray-700 pt-6 text-center">
-          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} STEMletics. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} PlaySmart. All rights reserved.</p>
         </div>
       </div>
     </footer>

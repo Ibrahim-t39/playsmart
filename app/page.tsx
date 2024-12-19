@@ -6,42 +6,41 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 export default function Home() {
-  // Define the type of hoveredFeature to allow number or null
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
 
   const features = [
     {
       title: "Interactive Courses",
       description:
-        "Gamified modules teaching STEM through sports applications: biomechanics, physics of trajectories, and more. Earn credits and certifications!",
+        "Engaging learning modules that blend sports with STEM concepts. Master biomechanics, physics, and data analytics while earning certifications.",
       icon: "/icons/courses.svg",
       image: "/images/courses.jpg",
     },
     {
       title: "Virtual Workshops",
       description:
-        "Live sessions with STEM professionals in sports. Gain real-world insights and mentorship.",
+        "Join live interactive sessions with industry experts. Learn directly from STEM professionals in sports and participate in hands-on activities.",
       icon: "/icons/workshops.svg",
       image: "/images/workshops.jpg",
     },
     {
-      title: "Career Center",
+      title: "Career Development",
       description:
-        "Apply for internships, scholarships, and scouting opportunities with top sports brands and universities.",
+        "Access exclusive internship opportunities, scholarships, and connections with leading sports organizations and academic institutions.",
       icon: "/icons/career-center.svg",
       image: "/images/career.jpg",
     },
     {
-      title: "Mentorship Hub",
+      title: "Expert Mentorship",
       description:
-        "One-on-One mentorship with STEM professionals and monthly Q&A sessions to guide your career.",
+        "Connect one-on-one with industry professionals. Regular guidance sessions to help shape your future in sports and STEM.",
       icon: "/icons/mentorship.svg",
       image: "/images/mentorship.jpg",
     },
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-black to-gray-900 text-white">
+    <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-gray-900 to-black text-white">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
@@ -50,31 +49,33 @@ export default function Home() {
             alt="Hero Background"
             layout="fill"
             objectFit="cover"
-            className="opacity-70"
+            className="opacity-60"
           />
         </div>
         <motion.div
-          className="relative z-10 text-center max-w-5xl bg-gradient-to-br from-black/70 via-black/50 to-transparent p-12 rounded-lg shadow-2xl"
+          className="relative z-10 text-center max-w-5xl px-6 py-16 rounded-2xl backdrop-blur-sm bg-black/30"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-            STEMletics: Innovate, Excel, Dominate
+          <h1 className="text-6xl sm:text-7xl font-extrabold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
+              PlaySmart
+            </span>
           </h1>
-          <p className="mt-6 text-xl md:text-3xl text-gray-300">
-            Where Sports Passion Meets STEM Innovation.
+          <p className="text-2xl sm:text-3xl text-gray-200 mb-8">
+            Where Sports Excellence Meets STEM Innovation
           </p>
-          <div className="mt-10 flex justify-center gap-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
             <Link
               href="/courses"
-              className="bg-blue-500 px-10 py-5 rounded-full text-black font-bold shadow-lg hover:bg-blue-600 hover:scale-105 transform transition-transform"
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 rounded-lg text-white font-bold shadow-lg hover:from-blue-600 hover:to-cyan-600 transform transition-all duration-300"
             >
-              Get Started
+              Start Learning
             </Link>
             <Link
               href="/about"
-              className="bg-purple-500 px-10 py-5 rounded-full text-black font-bold shadow-lg hover:bg-purple-600 hover:scale-105 transform transition-transform"
+              className="bg-gray-800 px-8 py-4 rounded-lg text-gray-200 font-bold shadow-lg hover:bg-gray-700 transform transition-all duration-300"
             >
               Learn More
             </Link>
@@ -83,22 +84,26 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-8">
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-green-400 text-center"
+            className="text-4xl sm:text-5xl font-bold text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Explore Our Features
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+              Why Choose PlaySmart?
+            </span>
           </motion.h2>
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className={`relative p-10 rounded-xl shadow-lg transform transition-all ${
-                  hoveredFeature === index ? "bg-teal-600 scale-105" : "bg-gray-800"
+                className={`relative p-8 rounded-xl backdrop-blur-sm transition-all duration-300 ${
+                  hoveredFeature === index 
+                    ? "bg-blue-600/20 shadow-lg shadow-blue-500/20" 
+                    : "bg-gray-800/50"
                 }`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -112,15 +117,19 @@ export default function Home() {
                     alt={feature.title}
                     layout="fill"
                     objectFit="cover"
-                    className="opacity-50"
+                    className="opacity-30"
                   />
                 </div>
-                <div className="relative z-10 text-center">
+                <div className="relative z-10">
                   <div className="flex justify-center mb-6">
-                    <Image src={feature.icon} alt={feature.title} width={80} height={80} />
+                    <Image src={feature.icon} alt={feature.title} width={64} height={64} />
                   </div>
-                  <h3 className="text-2xl font-bold text-teal-300 mb-3">{feature.title}</h3>
-                  <p className="text-gray-300">{feature.description}</p>
+                  <h3 className="text-xl font-bold text-blue-400 mb-3 text-center">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-300 text-center">
+                    {feature.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -129,29 +138,33 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-700 text-center text-white">
+      <section className="py-24 bg-gradient-to-br from-gray-900 to-black">
         <motion.div
-          className="container mx-auto px-6"
+          className="max-w-4xl mx-auto px-6 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-5xl font-bold">Step Into the Future</h2>
-          <p className="mt-6 text-lg">
-            Unlock your potential with STEMletics. Your journey begins here.
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+              Ready to Transform Your Game?
+            </span>
+          </h2>
+          <p className="text-xl text-gray-300 mb-10">
+            Join PlaySmart today and discover how STEM can elevate your athletic performance.
           </p>
-          <div className="mt-10 flex justify-center gap-8">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
             <Link
-              href="/signup"
-              className="bg-white text-indigo-700 px-10 py-5 rounded-full font-bold shadow-lg hover:bg-gray-200 hover:scale-105 transition-transform"
+              href="/auth"
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 rounded-lg text-white font-bold shadow-lg hover:from-blue-600 hover:to-cyan-600 transform transition-all duration-300"
             >
               Join Now
             </Link>
             <Link
-              href="/learn-more"
-              className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold hover:bg-white hover:text-indigo-700 hover:scale-105 transition-transform"
+              href="/courses"
+              className="bg-gray-800 px-8 py-4 rounded-lg text-gray-200 font-bold shadow-lg hover:bg-gray-700 transform transition-all duration-300"
             >
-              Discover More
+              Explore Courses
             </Link>
           </div>
         </motion.div>

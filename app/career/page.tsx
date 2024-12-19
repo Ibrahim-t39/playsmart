@@ -49,7 +49,7 @@ const jobs: Job[] = [
 const resources: Resource[] = [
   {
     title: 'Resume Writing Guide',
-    description: 'Learn how to craft a compelling resume for STEM-Sports careers.',
+    description: 'Learn how to craft a compelling resume for PlaySmart careers.',
     link: '#',
   },
   {
@@ -65,10 +65,15 @@ const resources: Resource[] = [
 ];
 
 export default function CareerPage() {
-  const { user } = useAuth();
+  const { user } = useAuth(); // Still fetching the user for email/initial state
+  const [isPremium, setIsPremium] = useState(user?.isPremium || false); // Local state for premium status
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
 
-  if (!user || !user.isPremium) {
+  const handleUpgrade = () => {
+    setIsPremium(true); // Set premium status locally
+  };
+
+  if (!isPremium) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
         <h1 className="text-4xl font-bold text-green-400 mb-4">Premium Feature</h1>
@@ -77,7 +82,7 @@ export default function CareerPage() {
         </p>
         <button
           className="bg-gradient-to-r from-green-400 to-blue-500 px-6 py-3 rounded-lg text-white font-bold hover:from-green-500 hover:to-blue-600 transition-transform transform hover:scale-105"
-          onClick={() => (window.location.href = '/pricing')}
+          onClick={handleUpgrade}
         >
           Upgrade to Premium
         </button>

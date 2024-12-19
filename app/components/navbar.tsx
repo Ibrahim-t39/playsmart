@@ -25,7 +25,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
               <span className="font-extrabold text-3xl text-gradient bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-400">
-                STEMletics
+                PlaySmart
               </span>
             </Link>
           </div>

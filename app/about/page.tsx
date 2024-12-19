@@ -11,7 +11,7 @@ const teamMembers = [
 ];
 
 const milestones = [
-  { year: 2023, event: "STEMletics concept developed" },
+  { year: 2023, event: "PlaySmart concept developed" },
   { year: 2024, event: "Initial team assembled and pilot programs planned" },
   { year: 2025, event: "Expected platform launch and first online courses" },
   { year: 2026, event: "Goal: Partner with key sports organizations" },
@@ -22,9 +22,9 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Hero Section */}
-      <div className="py-20 text-center">
+      <div className="py-20 text-center px-6">
         <h1 className="text-5xl font-extrabold tracking-wide text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-green-400 to-yellow-400">
-          About STEMletics
+          About PlaySmart
         </h1>
         <p className="mt-4 text-lg text-gray-300">
           Bridging sports and STEM to empower the leaders of tomorrow.
@@ -32,15 +32,15 @@ export default function AboutPage() {
       </div>
 
       {/* Mission Section */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-blue-500">
             Our Mission
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <p className="text-lg text-gray-300 mb-6">
-                STEMletics aims to inspire a new generation of leaders by connecting physical activity with academic
+                PlaySmart aims to inspire a new generation of leaders by connecting physical activity with academic
                 innovation. Through a STEM-Sports integrated approach, we strive to make learning engaging and impactful.
               </p>
               <h3 className="text-2xl font-semibold mb-4 text-blue-400">Our Focus</h3>
@@ -72,12 +72,12 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-gray-800">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-16 bg-gray-800 px-6">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
             Meet the Team
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {teamMembers.map((member, index) => (
               <div
                 key={index}
@@ -99,8 +99,8 @@ export default function AboutPage() {
       </section>
 
       {/* Journey Section */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-400">
             Our Journey
           </h2>
@@ -108,20 +108,20 @@ export default function AboutPage() {
             {milestones.map((milestone, index) => (
               <div
                 key={index}
-                className={`flex items-center mb-6 ${
-                  index % 2 === 0 ? "flex-row-reverse" : ""
+                className={`flex flex-col sm:flex-row items-center mb-6 ${
+                  index % 2 === 0 ? "sm:flex-row-reverse" : ""
                 }`}
               >
-                <div className="w-1/2">
+                <div className="sm:w-1/2 w-full">
                   <div className="bg-gray-800 rounded-lg shadow-lg p-6 text-gray-300">
                     <h3 className="text-lg font-bold mb-2">{milestone.event}</h3>
                     <p className="text-gray-400">Year: {milestone.year}</p>
                   </div>
                 </div>
-                <div className="w-1/2 flex justify-center">
+                <div className="sm:w-1/2 w-full flex justify-center sm:justify-start mt-4 sm:mt-0">
                   <div
                     className={`h-4 w-4 rounded-full bg-green-400 ${
-                      index % 2 === 0 ? "ml-6" : "mr-6"
+                      index % 2 === 0 ? "sm:ml-6" : "sm:mr-6"
                     }`}
                   />
                 </div>

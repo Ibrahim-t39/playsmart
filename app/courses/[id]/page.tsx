@@ -213,7 +213,7 @@ export default function CourseDetailsPage() {
 
   if (!course) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white pt-24">
         <h1 className="text-3xl font-bold">Course not found</h1>
         <Link href="/courses" className="text-green-400 underline mt-4">
           Back to Courses
@@ -223,7 +223,7 @@ export default function CourseDetailsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white pt-24">
       {/* Header Section */}
       <div className="bg-gradient-to-br from-gray-800 to-black py-12">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-8">
@@ -232,19 +232,25 @@ export default function CourseDetailsPage() {
             <h1 className="text-5xl font-extrabold text-green-400 mb-4">{course.title}</h1>
             <p className="text-lg text-gray-300 mb-4">{course.details}</p>
             <div className="flex items-center gap-4 mb-6">
-              <span className={`px-3 py-1 text-sm font-medium rounded-lg ${
-                {
-                  Physics: "bg-blue-500",
-                  Biology: "bg-green-500",
-                  "Data Science": "bg-purple-500",
-                  Health: "bg-yellow-500",
-                  Engineering: "bg-red-500",
-                  Psychology: "bg-pink-500",
-                }[course.category]
-              } text-black`}>{course.category}</span>
-              <span className="px-3 py-1 text-sm font-medium bg-gray-700 text-gray-300 rounded-lg">{course.level}</span>
+              <span
+                className={`px-3 py-1 text-sm font-medium rounded-lg ${
+                  {
+                    Physics: "bg-blue-500",
+                    Biology: "bg-green-500",
+                    "Data Science": "bg-purple-500",
+                    Health: "bg-yellow-500",
+                    Engineering: "bg-red-500",
+                    Psychology: "bg-pink-500",
+                  }[course.category]
+                } text-black`}
+              >
+                {course.category}
+              </span>
+              <span className="px-3 py-1 text-sm font-medium bg-gray-700 text-gray-300 rounded-lg">
+                {course.level}
+              </span>
             </div>
-            <h2 className="text-2xl font-bold text-gray-200 mb-4">What You will Learn</h2>
+            <h2 className="text-2xl font-bold text-gray-200 mb-4">What You Will Learn</h2>
             <ul className="list-disc ml-5 text-gray-300 space-y-2">
               {course.whatYouLearn.map((item, index) => (
                 <li key={index}>{item}</li>
@@ -255,8 +261,20 @@ export default function CourseDetailsPage() {
           {/* Right: Pricing Box */}
           <div className="bg-gray-800 rounded-lg p-6 shadow-lg w-full max-w-sm">
             <h3 className="text-3xl font-bold text-green-400 mb-4">{course.price}</h3>
-            <p className="text-gray-300 mb-6">Get lifetime access to this course, including updates and bonus content.</p>
-            <button className="w-full bg-green-400 text-black py-3 rounded-lg font-bold hover:bg-green-500 transition">Enroll Now</button>
+            <p className="text-gray-300 mb-6">
+              Get lifetime access to this course, including updates and bonus content.
+            </p>
+            <div className="flex flex-col gap-4">
+              <button className="w-full bg-green-400 text-black py-3 rounded-lg font-bold hover:bg-green-500 transition">
+                Enroll Now
+              </button>
+              <Link
+                href="/courses"
+                className="w-full text-center bg-gray-700 text-gray-300 py-3 rounded-lg font-bold hover:bg-gray-600 transition"
+              >
+                Back to Courses
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -279,12 +297,10 @@ export default function CourseDetailsPage() {
       {/* Instructor Section */}
       <div className="py-12 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 flex gap-8 items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={course.instructor.image}
             alt={course.instructor.name}
-            width={128} 
-            height={128} 
             className="w-32 h-32 rounded-full object-cover border-4 border-green-400"
           />
           <div>

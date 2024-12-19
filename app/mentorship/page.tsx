@@ -129,11 +129,6 @@ export default function MentorshipPage() {
             </div>
           ))}
         </section>
-
-        {/* Footer Section */}
-        <footer className="text-center text-gray-400 text-sm mt-16">
-          &copy; {new Date().getFullYear()} STEMletics. All rights reserved.
-        </footer>
       </div>
 
       {/* Mentor Details Modal */}
