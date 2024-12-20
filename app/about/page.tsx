@@ -4,7 +4,7 @@ import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 
 const teamMembers = [
-  { name: "Thabo Ibrahim Traore", role: "Co-Founder", image: "/team/me.JPG" },
+  { name: "Ibrahim Traore", role: "Co-Founder", image: "/team/me.jpeg" },
   { name: "Solomon Agyire", role: "Co-Founder", image: "/team/solo.jpeg" },
   { name: "Sunday Ochigbo", role: "Co-Founder", image: "/team/sunday.jpeg" },
   { name: "Amarachi Ezekiel", role: "Co-Founder", image: "/team/amarachi.jpeg" },

@@ -11,20 +11,61 @@ import { useAuth } from './AuthProvider';
 
 export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const router = useRouter();
-  const { login } = useAuth();
+  const { login} = useAuth();  // Add register to destructuring
 
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
+    setError('');
 
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get('signin-email') as string;
-    const password = formData.get('signin-password') as string;
+    try {
+      const formData = new FormData(event.currentTarget);
+      const email = formData.get('signin-email') as string;
+      const password = formData.get('signin-password') as string;
 
-    await login(email, password);
-    setIsLoading(false);
-    router.push('/'); // Redirect to home page after successful sign-in
+      await login(email, password);
+      router.push('/');
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'An error occurred during sign-in');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const formData = new FormData(event.currentTarget);
+      const name = formData.get('signup-name') as string;
+      const email = formData.get('signup-email') as string;
+      const password = formData.get('signup-password') as string;
+      const confirmPassword = formData.get('signup-confirm-password') as string;
+
+      // Validation
+      if (password !== confirmPassword) {
+        throw new Error('Passwords do not match');
+      }
+
+      if (password.length < 8) {
+        throw new Error('Password must be at least 8 characters long');
+      }
+
+
+      
+      // Automatically log in the user after successful registration
+      await login(email, password);
+      
+      router.push('/');
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'An error occurred during sign-up');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -53,12 +94,14 @@ export default function AuthPage() {
               </CardHeader>
               <form onSubmit={handleSignIn}>
                 <CardContent className="space-y-6">
+                  {error && <div className="text-red-400 text-sm">{error}</div>}
                   <div>
                     <Label htmlFor="signin-email" className="text-gray-400">
                       Email
                     </Label>
                     <Input
                       id="signin-email"
+                      name="signin-email"
                       type="email"
                       placeholder="Enter your email"
                       required
@@ -71,6 +114,7 @@ export default function AuthPage() {
                     </Label>
                     <Input
                       id="signin-password"
+                      name="signin-password"
                       type="password"
                       placeholder="Enter your password"
                       required
@@ -96,14 +140,16 @@ export default function AuthPage() {
                 <CardTitle className="text-blue-400 text-2xl">Sign Up</CardTitle>
                 <CardDescription className="text-gray-400">Create a new account to join PlaySmart.</CardDescription>
               </CardHeader>
-              <form>
+              <form onSubmit={handleSignUp}>
                 <CardContent className="space-y-6">
+                  {error && <div className="text-red-400 text-sm">{error}</div>}
                   <div>
                     <Label htmlFor="signup-name" className="text-gray-400">
                       Full Name
                     </Label>
                     <Input
                       id="signup-name"
+                      name="signup-name"
                       type="text"
                       placeholder="Enter your full name"
                       required
@@ -116,6 +162,7 @@ export default function AuthPage() {
                     </Label>
                     <Input
                       id="signup-email"
+                      name="signup-email"
                       type="email"
                       placeholder="Enter your email"
                       required
@@ -128,6 +175,7 @@ export default function AuthPage() {
                     </Label>
                     <Input
                       id="signup-password"
+                      name="signup-password"
                       type="password"
                       placeholder="Create a password"
                       required
@@ -140,6 +188,7 @@ export default function AuthPage() {
                     </Label>
                     <Input
                       id="signup-confirm-password"
+                      name="signup-confirm-password"
                       type="password"
                       placeholder="Confirm your password"
                       required
