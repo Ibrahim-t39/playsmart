@@ -41,7 +41,6 @@ export default function AuthPage() {
 
     try {
       const formData = new FormData(event.currentTarget);
-      const name = formData.get('signup-name') as string;
       const email = formData.get('signup-email') as string;
       const password = formData.get('signup-password') as string;
       const confirmPassword = formData.get('signup-confirm-password') as string;
