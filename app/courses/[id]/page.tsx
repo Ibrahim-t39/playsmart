@@ -19,7 +19,7 @@ const courses = [
     instructor: {
       name: "Dr. John Smith",
       bio: "PhD in Physics with over 15 years of experience in applying physics principles to sports science.",
-      image: "/instructors/john-smith.jpg",
+      image: "/career/john.jpg",
     },
     content: [
       { title: "Introduction to Physics in Sports", duration: "10m" },
@@ -47,7 +47,7 @@ const courses = [
     instructor: {
       name: "Dr. Emily Davis",
       bio: "Expert in biomechanics with over a decade of experience in sports research.",
-      image: "/instructors/emily-davis.jpg",
+      image: "/career/emilyd.jpg",
     },
     content: [
       { title: "Introduction to Biomechanics", duration: "12m" },
@@ -103,7 +103,7 @@ const courses = [
     instructor: {
       name: "Dr. Clara Barton",
       bio: "Nutritionist specializing in athletic performance with over 10 years of experience.",
-      image: "/instructors/clara-barton.jpg",
+      image: "/career/clara.jpg",
     },
     content: [
       { title: "Introduction to Sports Nutrition", duration: "10m" },
@@ -188,7 +188,7 @@ const courses = [
     "instructor": {
         "name": "Dr. Emily Carter",
         "bio": "Certified sports psychologist with 10+ years of experience working with athletes to improve mental performance.",
-        "image": "/instructors/emily-carter.jpg"
+        "image": "/career/emily.jpg"
     },
     "content": [
         { "title": "Introduction to Sports Psychology", "duration": "15m" },
