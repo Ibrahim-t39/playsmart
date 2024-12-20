@@ -13,7 +13,7 @@ export default function Home() {
       title: "Interactive Courses",
       description:
         "Engaging learning modules that blend sports with STEM concepts. Master biomechanics, physics, and data analytics while earning certifications.",
-      icon: "/icons/courses.svg",
+      icon: "/icons/course-icon.svg",
       image: "/images/courses.jpg",
     },
     {
