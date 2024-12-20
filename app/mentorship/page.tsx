@@ -17,7 +17,7 @@ const mentors: Mentor[] = [
   {
     name: "Dr. Alex Thompson",
     expertise: "Sports Biomechanics",
-    image: "/mentorship/alex",
+    image: "/mentorship/alex.jpg",
     rating: 4.9,
     bio: "Dr. Thompson is a leading expert in sports biomechanics with over 15 years of experience in analyzing and improving athletic performance.",
     details: [
@@ -29,7 +29,7 @@ const mentors: Mentor[] = [
   {
     name: "Prof. Maria Garcia",
     expertise: "Sports Data Science",
-    image: "/mentorship/maria",
+    image: "/mentorship/maria.jpg",
     rating: 4.8,
     bio: "Prof. Garcia specializes in applying advanced data science techniques to sports analytics, helping teams and athletes gain a competitive edge.",
     details: [
@@ -41,7 +41,7 @@ const mentors: Mentor[] = [
   {
     name: "Eng. David Webb",
     expertise: "Sports Technology",
-    image: "/mentorship/david",
+    image: "/mentorship/david.jpg",
     rating: 4.7,
     bio: "Eng. Webb is at the forefront of sports technology innovation, developing cutting-edge equipment and performance monitoring systems.",
     details: [
@@ -53,7 +53,7 @@ const mentors: Mentor[] = [
   {
     name: "Dr. Emily Johnson",
     expertise: "Athlete Psychology",
-    image: "/mentorship/emily",
+    image: "/mentorship/emily.jpg",
     rating: 4.9,
     bio: "Dr. Johnson is a renowned psychologist focusing on mental performance strategies for elite athletes.",
     details: [
