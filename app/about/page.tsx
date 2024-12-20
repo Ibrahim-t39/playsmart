@@ -4,10 +4,10 @@ import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 
 const teamMembers = [
-  { name: "Dr. Emily Chen", role: "Founder & CEO", image: "/placeholder.svg" },
-  { name: "Michael Johnson", role: "CTO", image: "/placeholder.svg" },
-  { name: "Sarah Thompson", role: "Head of Education", image: "/placeholder.svg" },
-  { name: "David Rodriguez", role: "Lead Data Scientist", image: "/placeholder.svg" },
+  { name: "Thabo Ibrahim Traore", role: "Co-Founder", image: "/team/me.JPG" },
+  { name: "Solomon Agyire", role: "Co-Founder", image: "/team/solo.jpeg" },
+  { name: "Sunday Ochigbo", role: "Co-Founder", image: "/team/sunday.jpeg" },
+  { name: "Amarachi Ezekiel", role: "Co-Founder", image: "/team/amarachi.jpeg" },
 ];
 
 const milestones = [
